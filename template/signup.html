@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block contant%}
+<div class="container col-xl-6 shadow-lg">
+  <form action="{% url 'signup' %}" class="mt-5" method="post" novalidate>
+    {% csrf_token %}
+    {% for fm in form%}
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock contant %}

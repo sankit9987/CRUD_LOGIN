@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: grey;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+  {% if request.user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'index' %}">Home</a>
+    </li>
+    <li class="nav-item">
+      {% if perms.crud.edit_entry_delete_entry %}
+      <a class="nav-link" href="{% url 'form' %}">Add student</a>
+      {% endif %}
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}">logout</a>
+    </li>
+
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'signup' %}">sing in</a>
+    </li>
+    {% endif %}
+    <li>
+      <form class="form-inline content-justify-right" method="GET" action="{% url 'search' %}">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="name" id="name">
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
+    </li>
+  </ul>
+</nav>
+{% block contant %}
+{% endblock contant %}
+
+</body>
+</html>

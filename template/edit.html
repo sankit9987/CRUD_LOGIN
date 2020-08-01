@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block contant %}
+<div class="container col-xl-6 shadow-lg">
+  <form action="" class="mt-5" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>
+{% endblock contant %}

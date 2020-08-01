@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block contant %}
+<div class="container mt-5">
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>Roll No</th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Button</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for d in data%}
+      <tr>
+        <td>{{d.id}}</td>
+        <td>{{d.name}}</td>
+        <td>{{d.contact}}</td>
+        {% if perms.crud.edit_entry_delete_entry %}
+        <td><a href="{% url 'edit' d.id %}" class="btn btn-warning"> <i class="fas fa-edit"></i></a>
+        <form action="{% url 'delete' d.id %}" method="post" class="d-inline">
+        {% csrf_token %}
+        <Button class="btn btn-danger"><i class="fas fa-trash-alt"></i></Button>
+        </form>
+        {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock contant %}
